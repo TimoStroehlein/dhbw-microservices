@@ -1,14 +1,19 @@
 const express = require('express');
-const app = express();
-
-const bodyParser = require('body-parser');
 const axios = require('axios');
+const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
 const events = [];
+
+app.get('/events', (request, response) => {
+    console.log(events);
+    response.send(events);
+}); 
 
 app.post('/events', (request, response) => {
     const event = request.body;
@@ -23,11 +28,6 @@ app.post('/events', (request, response) => {
 
     response.send({ status: 'ok event forwarded'});
 });
-
-app.get('/events', (request, response) => {
-    console.log(events);
-    response.send(events);
-});  
 
 app.listen(4005, () => {
     console.log('Listening on 4005');
