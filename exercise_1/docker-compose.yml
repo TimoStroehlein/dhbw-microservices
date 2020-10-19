@@ -1,0 +1,42 @@
+version: '2'
+services:
+  client:
+    build: ./client
+    ports:
+      - '3000:3000'
+    networks:
+      development:
+  posts:
+    build: ./posts
+    ports:
+      - '4000:4000'
+    networks:
+      development:
+  comments:
+    build: ./comments
+    ports:
+      - '4001:4001'
+    networks:
+      development:
+  query:
+    build: ./query
+    ports:
+      - '4002:4002'
+    networks:
+      development:
+  moderation:
+    build: ./moderation
+    ports:
+      - '4003:4003'
+    networks:
+      development:
+  events:
+    build: ./events
+    ports:
+      - '4005:4005'
+    networks:
+      development:
+
+networks:
+  development:
+    driver: bridge

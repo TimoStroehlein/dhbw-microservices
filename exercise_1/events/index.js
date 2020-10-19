@@ -21,10 +21,10 @@ app.post('/events', (request, response) => {
     console.log(event);
     events.push(event);
 
-    axios.post('http://localhost:4000/events', event);
-    axios.post('http://localhost:4001/events', event);
-    axios.post('http://localhost:4002/events', event);
-    axios.post('http://localhost:4003/events', event);
+    axios.post('http://posts:4000/events', event);
+    axios.post('http://comments:4001/events', event);
+    axios.post('http://query:4002/events', event);
+    axios.post('http://moderation:4003/events', event);
 
     response.send({ status: 'ok event forwarded'});
 });
