@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posts
+spec:
+  containers:
+    - name: posts
+      imagePullPolicy: Never
+      image: timostroehlein/dhbw-exercise-1-posts:0.1
