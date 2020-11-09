@@ -56,7 +56,7 @@ app.post('/events', (request, response) => {
 app.listen(4002, async () => {
     console.log('Listening on 4002');
 
-    const res = await axios.get('http://events:4005/events');
+    const res = await axios.get('http://dhbw-microservices-exercise1-events:4005/events');
 
     for( let event of res.data) {
         console.log('processing event:', event.type)

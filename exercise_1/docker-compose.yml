@@ -1,39 +1,54 @@
-version: '2'
+version: '3'
 services:
-  client:
+  dhbw-microservices-exercise1-client:
     build: ./client
     ports:
       - '3000:3000'
+    image: timostroehlein/dhbw-microservices-exercise1-client
     networks:
       development:
-  posts:
+  dhbw-microservices-exercise1-posts:
     build: ./posts
     ports:
       - '4000:4000'
+    image: timostroehlein/dhbw-microservices-exercise1-posts
     networks:
       development:
-  comments:
+  dhbw-microservices-exercise1-comments:
     build: ./comments
     ports:
       - '4001:4001'
+    image: timostroehlein/dhbw-microservices-exercise1-comments
     networks:
       development:
-  query:
+  dhbw-microservices-exercise1-query:
     build: ./query
     ports:
       - '4002:4002'
+    image: timostroehlein/dhbw-microservices-exercise1-query
     networks:
       development:
-  moderation:
+  dhbw-microservices-exercise1-moderation:
     build: ./moderation
     ports:
       - '4003:4003'
+    image: timostroehlein/dhbw-microservices-exercise1-moderation
     networks:
       development:
-  events:
+  dhbw-microservices-exercise1-events:
     build: ./events
     ports:
       - '4005:4005'
+    image: timostroehlein/dhbw-microservices-exercise1-events
+    networks:
+      development:
+  dhbw-microservices-exercise1-mongo:
+    image: "mongo"
+    ports:
+      - "27017:27017"
+    container_name: mongodb
+    volumes: 
+      - '~/mongo/data:/data/mongodb'
     networks:
       development:
 

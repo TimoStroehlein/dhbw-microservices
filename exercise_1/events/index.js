@@ -21,10 +21,10 @@ app.post('/events', (request, response) => {
     console.log(event);
     events.push(event);
 
-    axios.post('http://posts:4000/events', event);
-    axios.post('http://comments:4001/events', event);
-    axios.post('http://query:4002/events', event);
-    axios.post('http://moderation:4003/events', event);
+    axios.post('http://dhbw-microservices-exercise1-posts:4000/events', event);
+    axios.post('http://dhbw-microservices-exercise1-comments:4001/events', event);
+    axios.post('http://dhbw-microservices-exercise1-query:4002/events', event);
+    axios.post('http://dhbw-microservices-exercise1-moderation:4003/events', event);
 
     response.send({ status: 'ok event forwarded'});
 });
