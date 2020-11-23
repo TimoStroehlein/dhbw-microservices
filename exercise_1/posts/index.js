@@ -9,10 +9,23 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Mongodb
+const mongoose = require('mongoose');
+const PostsM = require('./postsDataModel.js').PostsM;
+const DB_URI = 'mongodb://dhbw-microservices-exercise1-mongo:27017/postsApp';
+
+mongoose.connect(DB_URI, {useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
+    console.log("connected to mongo db");
+});
+
 const posts = {};
 
 app.get('/posts', (request, response) => {
-    response.send(posts);
+    // response.send(posts);
+    PostsM.find()
+      .then((postsData) => response.status(200).send(postsData))
+      .catch((err) => response.status(400).send(err));
+
 });
 
 app.post('/posts', async (request, response) => {
@@ -31,6 +44,18 @@ app.post('/posts', async (request, response) => {
             title
         }
     });
+
+    const postsM = new PostsM({
+        id,
+        title
+    })
+
+    postsM.save((err, postm) => {
+        if (err) {
+            console.log(err);
+            return response.status(500).send();
+        }
+    })
 
     response.status(201).send(posts[id]);
 });
